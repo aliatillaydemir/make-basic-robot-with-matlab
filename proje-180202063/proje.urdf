@@ -1,0 +1,122 @@
+<?xml version="1.0"?>
+<robot name="proje">
+  
+  <material name="renk1">
+    <color rgba="1 0 1 0.5" />
+  </material>
+ 
+ <material name="renk2">
+    <color rgba="0.2 1 1 0.8" />
+  </material>
+  
+<material name="renk3">
+    <color rgba="1 1 0.5 0.8" />
+  </material>
+
+<material name="renk4">
+    <color rgba="0.8 0.1 0 0.5" />
+  </material>
+
+  <link name="base_link" />
+  <link name="link1">
+   
+ <visual>
+      <geometry>
+     <mesh filename="taban.stl"/>
+      </geometry>
+      <origin xyz="0 0 -3" />
+      <material name="renk4" />
+    </visual>
+  
+       <collision>
+         <geometry>
+   <box size="5 5 0.8" /> 
+         </geometry>
+       </collision>
+
+  </link>
+
+  <link name="link2">
+    <visual>
+      <geometry>
+      <mesh filename="govde.stl"/>
+      </geometry>
+      <origin xyz="0 0 -0.7" />
+      <material name="renk2" />
+    </visual>
+  <collision>
+         <geometry>
+      <box size="0.7 0.7 4" /> 
+         </geometry>
+       </collision>
+
+  </link>
+
+
+  <link name="link3">
+    <visual>
+      <geometry>
+         <mesh filename="çubuk.stl"/>
+      </geometry>
+      <origin xyz="0.8 -0.5 0" />
+      <material name="renk3" />
+    </visual>
+
+      <collision>
+         <geometry>
+             <box size="0.5 0.3 10" />
+         </geometry>
+       </collision>
+
+  </link>
+
+ <link name="link4">
+    <visual>
+      <geometry>
+    <mesh filename="son.stl"/>  
+      </geometry>
+      <origin xyz="-4 -0.1 0" />
+      <material name="renk1" />
+    </visual>
+
+      <collision>
+         <geometry>
+              <box size="0.5 0.5 8" />
+         </geometry>
+       </collision>
+
+  </link>
+
+
+
+  <joint name="q1" type="fixed">
+    <parent link="base_link" />
+    <child link="link1" />
+    <axis xyz="0 0 1" />
+  </joint>
+  
+  <joint name="q2" type="revolute">
+    <parent link="link1" />
+    <child link="link2" />
+<limit effort="1000" velocity="1.0" lower="-1000" upper="1000" />
+    <axis xyz="0 0 1" />
+  </joint>
+  
+  <joint name="q3" type="revolute">
+    <parent link="link2" />
+    <child link="link3" />
+<limit effort="1000" velocity="1.0" lower="-1000" upper="1000" />
+    <origin xyz="0 1 0" rpy="0 -1.5708 0"/>
+    <axis xyz="0 1 0" />
+  </joint>
+
+  <joint name="q4" type="prismatic">
+    <parent link="link3" />
+    <child link="link4" />
+<limit effort="1000" velocity="1.0" lower="-4" upper="4" />
+    <origin xyz="1 0 0" rpy="0 -1.5708 0"/>
+    <axis xyz="0 0 1" />
+  </joint>
+
+
+</robot>
